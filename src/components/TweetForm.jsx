@@ -3,17 +3,26 @@ import Tweet from './Tweet';
 const TweetForm = ({onSubmit}) => {
     const [tweet, setTweet] = useState("")
     const [isOver140, setIsOver140] = useState(false);
-    const username ="Gabriela"
     
     const handleChange = (e) => {
         const newTweet = e.target.value;
         setTweet(e.target.value)
-        setIsOver140(newTweet.length  > 140)
+        setIsOver140(newTweet.length > 140)
     }   
     
-    const handleTweetSubmit =() => {
-        onSubmit({ text: tweet, username: username })
-        setTweet("")
+    const handleTweetSubmit = async () => {
+        if (!tweet) return
+
+        const newTweet = {
+            content : tweet,
+            userName: tweet.userName,
+            date: new Date().toISOString(),
+        }
+        const isSuccess = await onSubmit(newTweet);
+    
+        if (isSuccess) {
+            setTweet('');
+        }
     }
     
     return (

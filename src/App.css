@@ -8,14 +8,12 @@ body {
   justify-content: center;
   align-items: flex-start;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .main-screen {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  max-width: 1200px;
+  width: 95%;
+  max-width: 1000px;
   padding: 20px;
   box-sizing: border-box;
 }
@@ -26,25 +24,32 @@ body {
   padding: 30px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
   margin-bottom: 40px;
+  position: relative; 
+  padding: 20px; 
+  margin:20px;
 }
 
 .tweet-text {
-  width: 100%;
+  width:100%;
   box-sizing: border-box;
   background-color: #2b395d;
   border: 1px solid #4d4d6e;
   border-radius: 5px;
   padding: 15px;
   color: #e0e0e0;
-  min-height: 120px;
-  resize: vertical;
-  margin-bottom: 10px;
+  min-height:80px;
+  resize: none;
+  margin-bottom: 15px;
   font-size: 18px;
+  border-radius: 10px;
+  margin-right: 10px;
+  word-wrap: break-word;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4); 
 }
 
 .tweet-text::placeholder {
   color: #8c8c9e;
-  font-size: 18px;
+  font-size: 18px;  
 }
 
 .tweet-btn {
@@ -69,15 +74,20 @@ body {
 }
 
 .error {
-  color: #ff6b6b;
-  margin-top: 5px;
-  font-size: 14px;
+  position: absolute; 
+  bottom: 40px; 
+  right: 20px; 
+  color: #e6b360;
+  background-color: #3f1a26; 
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 13px;
 }
 
 .tweet-list-container {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin:20px;
 }
 
 .tweet-container {
@@ -87,6 +97,7 @@ body {
   margin-bottom: 20px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
   transition: transform 0.2s ease-in-out;
+  word-wrap: break-word;
 }
 
 .tweet-container:hover {
@@ -114,23 +125,38 @@ body {
 .tweetText {
   line-height: 1.8;
   font-size: 16px;
+  word-break: break-word;
 }
 
 @media (max-width: 768px) {
   .main-screen {
-    width: 95%;
+    width: 95%; 
+    padding: 10px;
   }
 
-  .create-tweet, .tweet-container {
-    padding: 20px;
+  .tweet-container {
+    padding: 15px;
+    word-break: break-word; 
+  }
+
+  .create-tweet {
+    display: flex;
+    justify-content: center;
+    flex-direction: column; 
+    align-items: stretch;
+    padding: 15px;
   }
 
   .tweet-text {
     font-size: 16px;
-    min-height: 90px;
+    width: 100%;
+    min-height: 100px;
+    margin-bottom: 15px;
   }
 
   .tweet-btn {
+    position:static;
+    width:100%;
     font-size: 16px;
     padding: 10px 20px;
   }
@@ -141,5 +167,9 @@ body {
 
   .tweetText {
     font-size: 14px;
+  }
+
+  .error{
+    bottom: 0px; 
   }
 }

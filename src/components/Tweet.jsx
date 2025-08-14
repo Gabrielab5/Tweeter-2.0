@@ -1,16 +1,14 @@
+import React from "react";
 
-
-const Tweet = ({username, text , time}) => {
-
-const formattedTime = time.toLocaleString();
+const Tweet = ({userName, content , date}) => {
 
 return (  
     <div>
       <div className="header">
-        <div className="username"> {username}</div>
-         <div className="tweet-time">{formattedTime}</div>
+        <div className="username"> {userName}</div>
+         <div className="tweet-time">{date}</div>
       </div>
-      <div className="tweetText">{text}</div>
+      <div className="tweetText">{content}</div>
     </div>
   )
 }
