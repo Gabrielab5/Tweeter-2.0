@@ -25,6 +25,7 @@ a:hover {
 body {
   margin: 0;
   display: flex;
+  flex-direction: column;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
@@ -35,24 +36,7 @@ h1 {
   line-height: 1.1;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -62,7 +46,57 @@ button:focus-visible {
   a:hover {
     color: #747bff;
   }
-  button {
-    background-color: #f9f9f9;
-  }
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #162447;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.navbar button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0 15px;
+  transition: color 0.3s ease;
+}
+
+.navbar button:hover {
+  color: #94d2bd;
+}
+
+.navbar .navbar-links button {
+  background-color: transparent;
+  border: none;
+  color: #e0e0e0;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.navbar .navbar-links button:hover {
+  background-color: #2b395d;
+}
+
+.main-screen {
+  margin-top: 70px;
+  width: 95%;
+  max-width: 1000px;
+  padding: 20px;
+  box-sizing: border-box;
 }
