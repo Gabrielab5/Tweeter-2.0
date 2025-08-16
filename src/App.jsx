@@ -1,26 +1,43 @@
 import { useState } from 'react'
-import './App.css'
+import './CSS/App.css'
 import HomePage from './pages/HomePage'
 import ProfilePage from './pages/ProfilePage'
 import Navbar from './components/Navbar'
-import { TweetProvider } from './context/TweetContext';
+import { TweetProvider, useTweetContext } from './context/TweetContext';
 
-function App() {
+function AppContent() {
   const [page, setPage] = useState('home')
+  const { session, loadingSession } = useTweetContext();
 
   const handlePageChange = (newPage) => {
     setPage(newPage);
   }
 
+  if (loadingSession) {
+    return <div className="loading-screen">Loading...</div>;
+  }
+
+  if (!session) {
+    return <LoginPage />;
+  }
+
   return (
-    <TweetProvider>
+    <>
       <Navbar onNavigate={handlePageChange} />
       <div className="main-screen"> 
         {page === 'home' && (<HomePage />)}
         {page === 'profile' && ( <ProfilePage /> )}
       </div>
-    </TweetProvider>
+    </>
   )
+}
+
+function App() {
+  return (
+    <TweetProvider>
+      <AppContent />
+    </TweetProvider>
+  );
 }
 
 export default App

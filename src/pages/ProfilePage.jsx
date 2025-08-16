@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../profile.css';
+import '../CSS/profile.css';
 import { useTweetContext } from '../context/useTweetContext';
 
 const ProfilePage = () => {
