@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import Tweet from './Tweet';
-const TweetForm = ({onSubmit}) => {
+import { useTweetContext } from '../context/useTweetContext';
+
+const TweetForm = () => {
+     const { userName, addTweet } = useTweetContext();
     const [tweet, setTweet] = useState("")
     const [isOver140, setIsOver140] = useState(false);
     
@@ -15,10 +17,10 @@ const TweetForm = ({onSubmit}) => {
 
         const newTweet = {
             content : tweet,
-            userName: tweet.userName,
+            userName: userName,
             date: new Date().toISOString(),
         }
-        const isSuccess = await onSubmit(newTweet);
+        const isSuccess = await addTweet(newTweet);
     
         if (isSuccess) {
             setTweet('');

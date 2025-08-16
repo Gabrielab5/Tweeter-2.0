@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import '../profile.css';
+import { useTweetContext } from '../context/useTweetContext';
 
-const ProfilePage = ({ userName, onUserNameChange }) => {
+const ProfilePage = () => {
+  const { userName, updateUserName } = useTweetContext();
   const [newUserName, setNewUserName] = useState(userName);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (newUserName && newUserName !== userName) {
-      onUserNameChange(newUserName);
+      updateUserName(newUserName);
       alert('Username updated successfully!');
     }
   };
