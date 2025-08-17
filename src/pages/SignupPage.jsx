@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import '../CSS/login.css';
+import '../CSS/login.css'; 
 import { useTweetContext } from '../context/useTweetContext';
 
-const LoginPage = ({ onNavigate }) => {
-  const { login } = useTweetContext();
+const SignupPage = ({ onNavigate }) => {
+  const { signup } = useTweetContext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(email, password);
+    signup(email, password);
   };
 
   return (
     <div className="login-container">
-      <h2>Login to Tweeter</h2>
+      <h2>Sign Up to Tweeter</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email:</label>
@@ -38,12 +38,12 @@ const LoginPage = ({ onNavigate }) => {
             required
           />
         </div>
-        <button type="submit" className="login-btn">Login</button>
+        <button type="submit" className="login-btn">Sign Up</button>
       </form>
       <p style={{ marginTop: '20px' }}>
-        Don't have an account?{' '}
+        Already have an account?{' '}
         <button 
-          onClick={() => onNavigate('signup')}
+          onClick={() => onNavigate('login')}
           style={{
             background: 'none',
             border: 'none',
@@ -54,11 +54,11 @@ const LoginPage = ({ onNavigate }) => {
             padding: '0'
           }}
         >
-          Sign Up
+          Login
         </button>
       </p>
     </div>
   );
 };
 
-export default LoginPage;
+export default SignupPage;

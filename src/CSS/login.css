@@ -2,21 +2,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px;
+  padding: 50px;
   background-color: #162447;
   border-radius: 15px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
   color: #e0e0e0;
   width: 90%;
-  max-width: 500px;
-  margin: 50px auto;
+  max-width: 800px;
+  margin: auto;
   box-sizing: border-box;
 }
 
 .login-container h2 {
   color: #94d2bd;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   text-align: center;
+  font-size: 2em;
 }
 
 .login-container form {
@@ -32,18 +33,18 @@
 }
 
 .form-group label {
-  font-size: 16px;
-  margin-bottom: 8px;
+  font-size: 1.2em;
+  margin-bottom: 5px;
   color: #8c8c9e;
 }
 
 .form-group input {
-  padding: 12px;
+  padding: 15px;
   border: 1px solid #4d4d6e;
   border-radius: 8px;
   background-color: #2b395d;
   color: #e0e0e0;
-  font-size: 16px;
+  font-size: 1.1em;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
@@ -61,10 +62,10 @@
   color: white;
   border: none;
   border-radius: 8px;
-  padding: 12px 25px;
+  padding: 15px 50px;
   cursor: pointer;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 1.2em;
   transition: background-color 0.3s ease;
   align-self: center;
   width: 100%;

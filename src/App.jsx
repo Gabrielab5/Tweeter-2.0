@@ -6,7 +6,7 @@ import Navbar from './components/Navbar'
 import { TweetProvider} from './context/TweetContext';
 import { useTweetContext } from './context/useTweetContext';
 import LoginPage from './pages/LoginPage';
-
+import SignupPage from './pages/SignupPage';
 
 function AppContent() {
   const [page, setPage] = useState('home')
@@ -21,7 +21,7 @@ function AppContent() {
   }
 
   if (!session) {
-    return <LoginPage />;
+    return page === 'signup' ? <SignupPage onNavigate={handlePageChange} /> : <LoginPage onNavigate={handlePageChange} />;
   }
 
   return (

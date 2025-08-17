@@ -1,7 +1,6 @@
-import React, { createContext, useState, useEffect} from 'react';
+import React, { useState, useEffect} from 'react';
 import { createClient } from '@supabase/supabase-js';
-
-export const TweetContext = createContext();
+import { TweetContext } from './TweetContextObject'; 
 
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
@@ -58,6 +57,16 @@ export const TweetProvider = ({ children }) => {
     }
   };
 
+  const signup = async (email, password) => {
+    try {
+      const { data, error } = await supabase.auth.signUp({ email, password });
+      if (error) throw error;
+      alert("Registration successful! Please check your email to verify your account.");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   const logout = async () => {
     await supabase.auth.signOut();
     setSession(null);
@@ -92,7 +101,7 @@ export const TweetProvider = ({ children }) => {
   }, []);
 
   return (
-    <TweetContext.Provider value={{ tweets, isLoading, isError, userName, session, loadingSession,addTweet, updateUserName, login, logout}}>
+    <TweetContext.Provider value={{ tweets, isLoading, isError, userName, session, loadingSession,addTweet, updateUserName, login, logout, signup}}>
       {children}
     </TweetContext.Provider>
   );
