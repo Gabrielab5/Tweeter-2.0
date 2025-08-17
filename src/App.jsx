@@ -1,13 +1,13 @@
 import { useState } from 'react'
-import './CSS/App.css'
+import '../CSS/App.css'
 import HomePage from './pages/HomePage'
 import ProfilePage from './pages/ProfilePage'
 import Navbar from './components/Navbar'
-import { TweetProvider, useTweetContext } from './context/TweetContext';
+import { TweetProvider, TweetContext } from './context/TweetContext';
 
 function AppContent() {
   const [page, setPage] = useState('home')
-  const { session, loadingSession } = useTweetContext();
+  const { session, loadingSession } = TweetContext();
 
   const handlePageChange = (newPage) => {
     setPage(newPage);

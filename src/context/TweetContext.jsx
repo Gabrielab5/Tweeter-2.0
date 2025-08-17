@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect} from 'react';
 import { createClient } from '@supabase/supabase-js';
-const TweetContext = createContext();
+
+export const TweetContext = createContext();
 
 export const TweetProvider = ({ children }) => {
   const [tweets, setTweets] = useState([]);
