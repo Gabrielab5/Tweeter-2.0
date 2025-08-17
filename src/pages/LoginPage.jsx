@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../profile.css';
 import { useTweetContext } from '../context/useTweetContext';
 import '../CSS/login.css';
 

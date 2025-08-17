@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTweetContext } from '../context/useTweetContext';
-import './profile.css';
+import '../CSS/profile.css';
 
 const ProfilePage = () => {
   const { userName, updateUserName } = useTweetContext();

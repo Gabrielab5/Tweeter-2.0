@@ -3,6 +3,11 @@ import { createClient } from '@supabase/supabase-js';
 
 export const TweetContext = createContext();
 
+const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_ANON_KEY
+);
+
 export const TweetProvider = ({ children }) => {
   const [tweets, setTweets] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -13,11 +18,6 @@ export const TweetProvider = ({ children }) => {
     return localStorage.getItem('userName') || 'Anon';
   });
 
-  const SUPABASE_URL = 'https://pffltbympgyvyjzynewg.supabase.co'; 
-  const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEYeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBmZmx0YnltcGd5dnlqenluZXdnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUzNzY3NzQsImV4cCI6MjA3MDk1Mjc3NH0._rnhEJ4fr-mXovzVUU-M1GvFXjBDXPibjWqjhIt_3Ao'; 
- 
-  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-  
   const fetchTweets = async () => {
     try {
       const { data, error } = await supabase.from('Tweets').select('*').order('date', { ascending: false });
