@@ -12,16 +12,24 @@ export const TweetProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [session, setSession] = useState(null);
+  const [hasMore, setHasMore] = useState(true);
   const [loadingSession, setLoadingSession] = useState(true);
   const [userName, setUserName] = useState(() => {
     return localStorage.getItem('userName') || 'Anon';
   });
+  const TWEETS_PER_PAGE = 10;
 
-  const fetchTweets = async () => {
+  const fetchTweets = async (offset = 0) => {
     try {
-      const { data, error } = await supabase.from('Tweets').select('*').order('date', { ascending: false });
+      const { data, error } = await supabase.from('Tweets').select('*').order('date', { ascending: false })
+        .range(offset, offset + TWEETS_PER_PAGE - 1);
+
       if (error) throw error;
-      setTweets(data);
+      if (data.length < TWEETS_PER_PAGE) setHasMore(false);
+
+      if (offset === 0) setTweets(data);
+      else setTweets(prevTweets => [...prevTweets, ...data]);
+
       setIsError(false);
     } catch (error) {
       console.error('Error fetching tweets:', error);
@@ -73,6 +81,11 @@ export const TweetProvider = ({ children }) => {
     setTweets([]); 
   };
 
+  const loadMoreTweets = () => {
+    if (isLoading || !hasMore) return;
+    fetchTweets(tweets.length);
+  };
+
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
@@ -95,13 +108,13 @@ export const TweetProvider = ({ children }) => {
   useEffect(() => {
   if (session) {
     fetchTweets();
-    const intervalId = setInterval(fetchTweets, 5000); 
-    return () => clearInterval(intervalId);
+    } else {
+      setTweets([])
     }
-  }, []);
+  }, [session]);
 
   return (
-    <TweetContext.Provider value={{ tweets, isLoading, isError, userName, session, loadingSession,addTweet, updateUserName, login, logout, signup}}>
+    <TweetContext.Provider value={{ tweets, isLoading, isError, userName, session, loadingSession, hasMore, addTweet, loadMoreTweets, updateUserName, login, logout, signup}}>
       {children}
     </TweetContext.Provider>
   );
